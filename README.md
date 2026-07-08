@@ -71,8 +71,10 @@ Clone it into `.opencode/`, paste a link, or run the one-liner.
 | `plan` | "plan this", "create a plan" | Converts ideas into executable plans with persistent artifacts |
 | `investigate` | "debug this", "fix this bug" | Systematic debugging — reproduce, analyze, fix, verify |
 | `review` | "review this pr", "code review" | Pre-merge review across 8 dimensions (incl. Planning Completeness) with severity levels |
-| `docs` | "document this", "write docs" | Generates README, architecture, API, and setup documentation |
+| `docs` | "document this", "write docs" | Generates README, architecture, API, and setup documentation. Automatically checks output against writing-guidelines |
 | `ship` | "ship it", "commit push pr" | Stages, commits, pushes, opens PR, triggers review |
+| `web-design-guidelines` | "review my UI", "check accessibility" | Reviews UI code against 100+ accessibility, UX, and visual compliance rules |
+| `writing-guidelines` | "review my docs", "check writing style" | Reviews prose against 80+ writing style and voice rules |
 
 ### Installation Modes
 
@@ -125,12 +127,14 @@ command/                 # Slash commands (5 commands)
   plan.md
   investigate.md
   review.md
-  skills/                  # Skill packs (5 skills)
+  skills/                  # Skill packs (7 skills)
     plan/SKILL.md          #   Planning workflow
     investigate/SKILL.md   #   Debugging workflow
-    review/SKILL.md        #   Code review workflow
+    review/SKILL.md        #   Code review workflow (8 dimensions)
     docs/SKILL.md          #   Documentation workflow
     ship/SKILL.md          #   One-command PR pipeline
+    web-design-guidelines/ #   UI/accessibility review (100+ rules)
+    writing-guidelines/    #   Documentation style review (80+ rules)
   dogfooding/              # Dogfooding archive (evidence for framework changes)
     PROJECT_INDEX.md       #   Dogfooding project tracker
     FRAMEWORK_LEARNINGS.md #   Confirmed assumptions, bottlenecks, open questions

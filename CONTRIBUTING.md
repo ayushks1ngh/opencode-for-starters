@@ -39,12 +39,14 @@ command/                 # Slash commands (5 commands)
   plan.md
   investigate.md
   review.md
-skills/                  # Skill packs (5 skills)
+skills/                  # Skill packs (7 skills)
   plan/SKILL.md          #   Planning workflow
   investigate/SKILL.md   #   Debugging workflow
-  review/SKILL.md        #   Code review workflow
+  review/SKILL.md        #   Code review workflow (8 dimensions)
   docs/SKILL.md          #   Documentation workflow
   ship/SKILL.md          #   One-command PR pipeline
+  web-design-guidelines/ #   UI/accessibility review (100+ rules)
+  writing-guidelines/    #   Documentation style review (80+ rules)
 dogfooding/              # Dogfooding archive
   PROJECT_INDEX.md
   FRAMEWORK_LEARNINGS.md

@@ -58,6 +58,10 @@ Realistic examples that demonstrate common workflows. Show inputs and expected o
 ### Reference
 Complete reference information: configuration options, API parameters, edge cases, error codes. Include tables where appropriate.
 
+## Quality Check
+
+After generating documentation, invoke the **writing-guidelines** skill to review the output for style, voice, and structure compliance against Vercel's writing handbook (80+ rules covering tone, structure, code samples, typography). Fix any issues found before presenting the final documentation.
+
 ## Rules
 
 - Read the existing codebase before writing

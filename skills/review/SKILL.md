@@ -3,9 +3,11 @@ name: review
 description: >-
   Pre-merge engineering code review. Analyzes the diff for architecture
   violations, security issues, testing gaps, performance problems,
-  maintainability concerns, and developer experience regressions. Reports
-  findings with severity levels and an approval status. Use when asked to
-  "review this PR", "code review", "review my changes", or "check the diff".
+  maintainability concerns, developer experience regressions, UI/accessibility
+  compliance (via web-design-guidelines), and documentation quality (via
+  writing-guidelines). Reports findings with severity levels and an approval
+  status. Use when asked to "review this PR", "code review", "review my
+  changes", or "check the diff".
 ---
 
 # Review
@@ -24,7 +26,7 @@ Invoke this skill when the user says things like:
 
 ## Checklist
 
-Evaluate the diff against each dimension.
+Evaluate the diff against each dimension. For UI-related reviews, also invoke the **web-design-guidelines** skill to check accessibility, UX, and visual compliance. For documentation reviews, invoke the **writing-guidelines** skill for style and voice consistency.
 
 ### Architecture
 - Does the change follow the existing architecture?

@@ -11,3 +11,8 @@ credentials.*
 *.db
 *.db-shm
 *.db-wal
+
+# agent tooling
+.agents/
+__pycache__/
+*.pyc
