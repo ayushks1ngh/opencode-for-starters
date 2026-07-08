@@ -122,7 +122,3 @@ See `.opencode/tui.json` for the full list.
 ## License
 
 MIT
-
-## Credits
-
-Inspired by [omerxx/dotfiles](https://github.com/omerxx/dotfiles).
