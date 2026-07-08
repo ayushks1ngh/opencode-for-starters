@@ -2,18 +2,18 @@
   <img src="https://opencode.ai/opencode.svg" alt="opencode" width="120"/>
 </p>
 
-<h1 align="center">opencode-for-all</h1>
+<h1 align="center">opencode-for-starters</h1>
 
 <p align="center">
   <b>Batteries-included opencode config — drop it into any project and get a full AI development pipeline.</b>
 </p>
 
 <p align="center">
-  <a href="https://github.com/ayushks1ngh/opencode-for-all/stargazers">
-    <img src="https://img.shields.io/github/stars/ayushks1ngh/opencode-for-all?style=for-the-badge&color=gold" alt="Stars"/>
+  <a href="https://github.com/ayushks1ngh/opencode-for-starters/stargazers">
+    <img src="https://img.shields.io/github/stars/ayushks1ngh/opencode-for-starters?style=for-the-badge&color=gold" alt="Stars"/>
   </a>
-  <a href="https://github.com/ayushks1ngh/opencode-for-all/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/ayushks1ngh/opencode-for-all?style=for-the-badge&color=blue" alt="License"/>
+  <a href="https://github.com/ayushks1ngh/opencode-for-starters/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/ayushks1ngh/opencode-for-starters?style=for-the-badge&color=blue" alt="License"/>
   </a>
   <a href="https://opencode.ai">
     <img src="https://img.shields.io/badge/powered%20by-opencode-7C3AED?style=for-the-badge" alt="Powered by opencode"/>
@@ -26,7 +26,6 @@
 
 - **6 specialized agents** — architect, implementer, tester, PM, orchestrator, task-breakdown
 - **One-command ship** — commit, push, PR, and auto-review with a single phrase
-- **Full keybinding overhaul** — Vim-inspired, leader key `Ctrl+O`
 - **Zero setup** — clone and go, no dependencies to install
 - **Works everywhere** — per-project or global install
 
@@ -60,14 +59,14 @@ graph LR
 
 ```bash
 cd your-project
-git clone https://github.com/ayushks1ngh/opencode-for-all.git .opencode
+git clone https://github.com/ayushks1ngh/opencode-for-starters.git .opencode
 opencode .
 ```
 
 ### Global install
 
 ```bash
-git clone https://github.com/ayushks1ngh/opencode-for-all.git ~/.config/opencode
+git clone https://github.com/ayushks1ngh/opencode-for-starters.git ~/.config/opencode
 # or:
 bash setup.sh --global
 ```
@@ -87,7 +86,6 @@ This will commit, push, open a PR, and auto-post an `/oc review` comment.
 ```
 .opencode/
 ├── opencode.json          # default model + autoupdate
-├── tui.json               # ctrl+o leader, Vim keybinds
 ├── agent/                 # 6 custom agents
 │   ├── tech-lead.md
 │   ├── requirements-clarifier.md
@@ -100,24 +98,6 @@ This will commit, push, open a PR, and auto-post an `/oc review` comment.
 │   └── scan.md
 └── skills/ship/SKILL.md   # one-command PR pipeline
 ```
-
-## Keybindings
-
-Leader key is `Ctrl+O`. Some highlights:
-
-| Binding | Action |
-|---|---|
-| `Ctrl+O e` | Open editor |
-| `Ctrl+O a` | List agents |
-| `Ctrl+O m` | Switch model |
-| `Ctrl+O n/p` | Next/previous message |
-| `Ctrl+O y` | Copy message |
-| `Ctrl+O s` | Status view |
-| `Tab` / `Shift+Tab` | Cycle agents |
-| `Ctrl+P` | Command palette |
-| `F2` | Cycle recent models |
-
-See `.opencode/tui.json` for the full list.
 
 ## License
 
