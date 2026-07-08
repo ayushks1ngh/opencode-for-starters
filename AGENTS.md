@@ -38,6 +38,15 @@ Each stage has a dedicated agent. The pipeline guides but does not block — you
 8. **Security audit** → Use @scan to check for vulnerabilities
 9. **Complete work** → Use `/review` before merging, then `/ship` or "ship it"
 
+## Framework Governance
+
+Framework improvements follow the **Evidence Rule**:
+- An improvement is **validated** when it appears in two or more dogfooding projects, **OR** blocks successful project completion
+- Single-project observations are recorded in `dogfooding/FRAMEWORK_LEARNINGS.md` but not automatically implemented
+- This prevents feature creep and ensures changes are driven by real-world evidence
+
+See `dogfooding/` for the project archive and learnings repository.
+
 ## Commands
 
 | Command | What it does |

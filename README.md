@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/powered%20by-opencode-7C3AED?style=for-the-badge" alt="Powered by opencode"/>
   </a>
   <a href="./VERSION">
-    <img src="https://img.shields.io/badge/version-0.3.0-22AA55?style=for-the-badge" alt="Version 0.3.0"/>
+    <img src="https://img.shields.io/badge/version-0.4.0-22AA55?style=for-the-badge" alt="Version 0.4.0"/>
   </a>
 </p>
 
@@ -46,7 +46,7 @@ Clone it into `.opencode/`, paste a link, or run the one-liner.
 | Agent | Mode | Role |
 |---|---|---|
 | `tech-lead` | primary | Orchestrator — routes work to specialists, enforces pipeline order |
-| `planner` | primary | Requirements analysis, scope, milestones, risks. Generates persistent project docs |
+| `planner` | primary | Requirements analysis, scope, milestones, risks. Generates persistent project docs with security constraints, operational constraints, interface contracts, and module dependency graphs |
 | `big-pickle-simple-tasks` | primary | Breaks complex work into small actionable steps |
 | `requirements-clarifier` | subagent | Vague ideas → structured specs with acceptance criteria |
 | `architect-designer` | subagent | Design docs, ADRs, diagrams — zero code |
@@ -62,7 +62,7 @@ Clone it into `.opencode/`, paste a link, or run the one-liner.
 | `/scan` | Detects project type, runs security audit |
 | `/plan` | Creates an engineering plan with PRD, architecture, roadmap, and tasks |
 | `/investigate` | Systematic root-cause debugging workflow |
-| `/review` | Pre-merge code review with severity-ranked findings |
+| `/review` | Pre-merge code review with severity-ranked findings across 8 dimensions including Planning Completeness |
 
 ### Skills
 
@@ -70,7 +70,7 @@ Clone it into `.opencode/`, paste a link, or run the one-liner.
 |-------|---------|-------------|
 | `plan` | "plan this", "create a plan" | Converts ideas into executable plans with persistent artifacts |
 | `investigate` | "debug this", "fix this bug" | Systematic debugging — reproduce, analyze, fix, verify |
-| `review` | "review this pr", "code review" | Pre-merge review across 6 dimensions with severity levels |
+| `review` | "review this pr", "code review" | Pre-merge review across 8 dimensions (incl. Planning Completeness) with severity levels |
 | `docs` | "document this", "write docs" | Generates README, architecture, API, and setup documentation |
 | `ship` | "ship it", "commit push pr" | Stages, commits, pushes, opens PR, triggers review |
 
@@ -125,13 +125,19 @@ command/                 # Slash commands (5 commands)
   plan.md
   investigate.md
   review.md
-skills/                  # Skill packs (5 skills)
-  plan/SKILL.md          #   Planning workflow
-  investigate/SKILL.md   #   Debugging workflow
-  review/SKILL.md        #   Code review workflow
-  docs/SKILL.md          #   Documentation workflow
-  ship/SKILL.md          #   One-command PR pipeline
-.github/                 # Community health files
+  skills/                  # Skill packs (5 skills)
+    plan/SKILL.md          #   Planning workflow
+    investigate/SKILL.md   #   Debugging workflow
+    review/SKILL.md        #   Code review workflow
+    docs/SKILL.md          #   Documentation workflow
+    ship/SKILL.md          #   One-command PR pipeline
+  dogfooding/              # Dogfooding archive (evidence for framework changes)
+    PROJECT_INDEX.md       #   Dogfooding project tracker
+    FRAMEWORK_LEARNINGS.md #   Confirmed assumptions, bottlenecks, open questions
+    001-cli-task-tracker/  #   Dogfood #1 artifacts
+    002-url-shortener/     #   Dogfood #2 artifacts
+    templates/             #   Dogfooding templates
+  .github/                 # Community health files
   ISSUE_TEMPLATE/
   pull_request_template.md
 ```
@@ -195,10 +201,11 @@ git clone https://github.com/ayushks1ngh/opencode-for-starters.git .opencode
 ```
 
 Creates an engineering plan with persistent artifacts:
-- **PRD.md** — Product requirements, user personas, scope, success metrics
-- **ARCHITECTURE.md** — System design, data flow, technology choices
+- **PRD.md** — Product requirements, user personas, scope, success metrics, security constraints, operational constraints
+- **ARCHITECTURE.md** — System design, data flow, technology choices, interface contracts, module dependency graphs
 - **ROADMAP.md** — Milestones, phases, deliverables, timelines
-- **TASKS.md** — Granular tasks with dependencies and effort estimates
+- **TASKS.md** — Granular tasks with AC references, explicit dependencies, and traceability matrix
+- **BUILD_BRIEF.md** — Phase-specific implementation brief with verification commands for every acceptance criterion
 
 ### Build a project
 
@@ -222,7 +229,7 @@ Follows a systematic debugging workflow: reproduce → gather evidence → analy
 /review
 ```
 
-Analyzes the diff for architecture, security, testing, performance, maintainability, and developer experience. Reports findings with severity levels.
+Analyzes the diff for architecture, security, testing, performance, maintainability, developer experience, plan accuracy, and planning completeness. Reports findings with severity levels.
 
 ### Scan for vulnerabilities
 
@@ -244,13 +251,20 @@ Stages relevant files, commits, pushes, opens a PR, and triggers a review.
 
 ## Roadmap
 
-### Phase 4 — Quality & Design
+### v0.4.0 — Planning Maturity ✅
+
+- **Planning Maturity**: Security constraints, operational constraints, interface contracts, module dependency graphs now part of standard planning
+- **BUILD_BRIEF v2**: Verification section with executable curl/command examples for every acceptance criterion
+- **Planning Completeness review**: 8th review dimension checks planning artifact quality
+- **Dogfooding archive**: Structured evidence repository for framework governance
+
+### Phase 5 — Quality & Design
 
 - **qa** — Web QA with test-fix-verify loop
 - **cso** — Security audit with OWASP and STRIDE threat modeling
 - **design** — Design consultation with system proposals
 
-### Phase 5 — Operations
+### Phase 6 — Operations
 
 - **deploy** — Deployment automation
 - **monitor** — Post-deployment monitoring and alerting

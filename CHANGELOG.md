@@ -4,28 +4,32 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [0.3.1] - 2026-07-08
+## [0.4.0] - 2026-07-08
 
 ### Added
 
-- **BUILD_BRIEF.md generation**: Planner agent now produces a phase-specific implementation brief that distills PRD + ARCHITECTURE + ROADMAP + TASKS into a single actionable document
-- **AC→Task traceability**: TASKS.md tasks now annotate which acceptance criteria they satisfy (e.g. `(AC-1, AC-5)`), enabling coverage verification
-- **Explicit task dependencies**: TASKS.md now requires `depends_on` declarations for every task, enabling correct execution ordering
-- **Cross-reference validation**: Planner validates PRD↔ROADMAP consistency, AC→task coverage, and dependency completeness before delivery
-- **Plan Accuracy review dimension**: Review skill gains a 7th dimension checking implementation against PRD, ARCHITECTURE, and discovered plan gaps
-- **Build-to-Plan feedback loop**: Implementation specialist documents plan gaps discovered during coding; tech lead updates artifacts and passes findings to review
+- **Planning Maturity framework**: Planner now generates security constraints, operational constraints, interface contracts, and module dependency graphs — all validated prior to implementation
+- **Security constraints in PRD**: Explicit documentation of input validation rules, allowed protocols/schemes, auth requirements, trust boundaries, and security assumptions
+- **Operational constraints in PRD**: Explicit documentation of runtime assumptions, storage locations, database config, host binding, environment requirements, and deployment assumptions
+- **Interface contracts in ARCHITECTURE**: Component-level specifications with function signatures, return types, error conventions, status code conventions, and header requirements
+- **Module dependency graphs in ARCHITECTURE**: Explicit import/call dependency diagrams showing initialization order and preventing circular dependencies
+- **BUILD_BRIEF v2 — Verification section**: Every acceptance criterion now includes verification steps, validation commands, expected outcomes, and definition of done — enabling verification without re-reading other artifacts
+- **Traceability matrix in TASKS**: Reverse mapping of AC→tasks for impact analysis (e.g. "if AC-5 changes, which tasks are affected?")
+- **Planning Completeness review dimension**: Review now evaluates whether security constraints, operational assumptions, interface contracts, dependency graphs, and verification steps were documented and implemented correctly
+- **Dogfooding archive system**: `dogfooding/` directory with PROJECT_INDEX.md (project tracker), FRAMEWORK_LEARNINGS.md (confirmed/invalid assumptions, bottlenecks, open questions, evidence rules), and per-project artifact archives for 001-cli-task-tracker and 002-url-shortener
+- **Evidence Rule**: Framework governance — improvements validated by two or more dogfooding projects OR blocking completion; single-observations recorded but not automatically implemented
 
 ### Changed
 
-- **agent/planner.md**: Added BUILD_BRIEF.md to persistent artifacts, AC tagging in PRD, phase mapping in ROADMAP, AC references and dependencies in TASKS, post-generation validation step
-- **skills/plan/SKILL.md**: Added BUILD_BRIEF.md to outputs, AC traceability and dependency requirements, cross-reference validation step, updated description
-- **skills/review/SKILL.md**: Added Plan Accuracy dimension with 6 checkpoints
-- **agent/implementation-specialist.md**: Added Plan Gap Reporting section with structured output format
-- **agent/tech-lead.md**: Added Phase Brief Management section, Build-to-Plan Feedback Loop section, Plan Gap Processing in operational protocol
-- **AGENTS.md**: Updated planner and implementation-specialist descriptions
-- **VERSION**: 0.3.0 → 0.3.1
+- **agent/planner.md**: Complete rewrite of Persistent Artifacts section — added Security Constraints, Operational Constraints, Interface Contracts, Module Dependency Graph, Traceability Matrix, BUILD_BRIEF v2 Verification section, expanded Post-Generation Validation from 5 to 11 checks
+- **skills/plan/SKILL.md**: Updated all artifact generation steps to include security, operational, interface, and dependency documentation; BUILD_BRIEF now requires verification section; validation step expanded to 9 checks
+- **skills/review/SKILL.md**: Added Planning Completeness as an 8th review dimension with 7 checkpoints covering security, operational, interface, dependency, and verification completeness
+- **AGENTS.md**: Added Framework Governance section with Evidence Rule reference; updated planner description
+- **README.md**: Updated for Planning Maturity release; added Planning Completeness to review description; updated roadmap
+- **dogfooding/**: Created archive system with PROJECT_INDEX.md, FRAMEWORK_LEARNINGS.md, and per-project directories
+- **VERSION**: 0.3.1 → 0.4.0
 
-## [0.3.0] - 2026-07-08
+## [0.3.1] - 2026-07-08
 
 ### Added
 
@@ -49,6 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - 3 new command definitions (plan, investigate, review)
 - 1 new agent definition (planner)
 
+[0.4.0]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.4.0
 [0.3.1]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.3.1
 [0.3.0]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.3.0
 

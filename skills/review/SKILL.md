@@ -66,9 +66,22 @@ Evaluate the diff against each dimension.
 - Does the implementation match the PRD acceptance criteria for this phase?
 - Are all ACs for the current phase implemented? If not, are unimplemented ACs documented and justified?
 - Were plan gaps discovered during implementation (missing specs, ambiguous requirements, incorrect assumptions)?
-- Does the implementation respect ARCHITECTURE.md decisions (data model, file structure, interfaces)?
+- Does the implementation respect ARCHITECTURE.md decisions (data model, file structure, interfaces, dependency graph)?
 - Are there discrepancies between TASKS.md task descriptions and what was actually built?
 - If plan gaps were found, are they documented for planner feedback?
+
+### Planning Completeness
+- **Security constraints**: Are PRD security constraints (input validation, allowed protocols, auth, trust boundaries) documented and implemented? If missing, flag as a planning gap.
+- **Operational assumptions**: Are PRD operational constraints (storage location, binding, environment, database config) documented and followed? If missing, flag as a planning gap.
+- **Interface contracts**: Does ARCHITECTURE specify component interfaces? Does the implementation follow them? If missing, flag as a planning gap.
+- **Module dependency graph**: Does ARCHITECTURE include a dependency graph? Does the implementation's import structure match it? If missing, flag as a planning gap.
+- **Verification steps**: Does BUILD_BRIEF include verification commands for each AC? Are they accurate? If missing, flag as a planning gap.
+- **Acceptance criteria sufficiency**: Were the ACs sufficient to guide implementation? Were there questions the ACs didn't answer? Flag gaps.
+- **Output**: For each gap found, categorize as:
+  - `Planning gap — missing from artifacts`
+  - `Planning gap — incorrect in artifacts`
+  - `Implementation deviation — justified`
+  - `Implementation deviation — unjustified`
 
 ## Severity Levels
 
