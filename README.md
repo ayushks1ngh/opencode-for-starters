@@ -5,7 +5,7 @@
 <h1 align="center">opencode-for-starters</h1>
 
 <p align="center">
-  <b>Turn opencode into a full development team — one command.</b>
+  <b>Turn a raw software idea into a production-ready project through structured AI-driven workflows.</b>
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/powered%20by-opencode-7C3AED?style=for-the-badge" alt="Powered by opencode"/>
   </a>
   <a href="./VERSION">
-    <img src="https://img.shields.io/badge/version-0.2.0-22AA55?style=for-the-badge" alt="Version 0.2.0"/>
+    <img src="https://img.shields.io/badge/version-0.3.0-22AA55?style=for-the-badge" alt="Version 0.3.0"/>
   </a>
 </p>
 
@@ -29,14 +29,13 @@
 
 [opencode](https://opencode.ai) is an open-source AI coding agent that runs in your terminal — like Claude Code, but free and extensible.
 
-This repository is a **starter kit** that transforms opencode into a structured development pipeline. Instead of a blank prompt, you get:
+This repository is a **project execution framework** that transforms opencode from a blank prompt into a structured engineering team. It guides you through the full software delivery lifecycle:
 
-- **7 specialized agents** — an orchestrator, requirements clarifier, architect, implementer, tester, security scanner, and task decomposer
-- **Slash commands** — `/build` auto-detects your project, `/scan` checks for vulnerabilities
-- **Skill packs** — multi-step workflows like `ship` (commit → push → PR → review in one command)
-- **Pipeline orchestration** — AGENTS.md instructions loaded every session, so the model always knows how to route your work
+```
+Idea → Plan → Architecture → Implementation → Testing → Review → Ship
+```
 
-Clone it into `.opencode/`, paste a link, or run the one-liner. That's it.
+Clone it into `.opencode/`, paste a link, or run the one-liner.
 
 ---
 
@@ -46,25 +45,33 @@ Clone it into `.opencode/`, paste a link, or run the one-liner. That's it.
 
 | Agent | Mode | Role |
 |---|---|---|
-| `tech-lead` | primary | Orchestrator — routes work to specialists, integrates results |
+| `tech-lead` | primary | Orchestrator — routes work to specialists, enforces pipeline order |
+| `planner` | primary | Requirements analysis, scope, milestones, risks. Generates persistent project docs |
+| `big-pickle-simple-tasks` | primary | Breaks complex work into small actionable steps |
 | `requirements-clarifier` | subagent | Vague ideas → structured specs with acceptance criteria |
 | `architect-designer` | subagent | Design docs, ADRs, diagrams — zero code |
 | `implementation-specialist` | subagent | Writes code with strict scope discipline |
 | `test-automation-engineer` | subagent | Writes and runs tests, reports coverage |
 | `scan` | subagent | Scans for security vulnerabilities |
-| `big-pickle-simple-tasks` | primary | Breaks complex work into small steps |
 
 ### Commands
 
 | Command | What it does |
-|---|---|
+|---------|-------------|
 | `/build` | Auto-detects project type, runs the correct build command |
 | `/scan` | Detects project type, runs security audit |
+| `/plan` | Creates an engineering plan with PRD, architecture, roadmap, and tasks |
+| `/investigate` | Systematic root-cause debugging workflow |
+| `/review` | Pre-merge code review with severity-ranked findings |
 
 ### Skills
 
 | Skill | Trigger | What it does |
-|---|---|---|
+|-------|---------|-------------|
+| `plan` | "plan this", "create a plan" | Converts ideas into executable plans with persistent artifacts |
+| `investigate` | "debug this", "fix this bug" | Systematic debugging — reproduce, analyze, fix, verify |
+| `review` | "review this pr", "code review" | Pre-merge review across 6 dimensions with severity levels |
+| `docs` | "document this", "write docs" | Generates README, architecture, API, and setup documentation |
 | `ship` | "ship it", "commit push pr" | Stages, commits, pushes, opens PR, triggers review |
 
 ### Installation Modes
@@ -73,10 +80,6 @@ Clone it into `.opencode/`, paste a link, or run the one-liner. That's it.
 - **Local** — clone to `.opencode/` for one project
 - **Paste-link** — no clone needed, load instructions remotely
 
-### Workflow Orchestration
-
-The default `build` agent is overridden with a pipeline-aware prompt. Every session starts with orchestration knowledge: ambiguous requests route to the requirements clarifier, architectural work to the architect, implementation to the specialist, testing to the test engineer, and security to the scanner. Trivial fixes are handled directly.
-
 ---
 
 ## Architecture
@@ -84,15 +87,16 @@ The default `build` agent is overridden with a pipeline-aware prompt. Every sess
 ```
 You
  └─ build (default orchestrator)
-      ├─ @requirements-clarifier    (vague → structured)
-      ├─ @architect-designer        (design → plan)
-      ├─ @implementation-specialist (plan → code)
-      ├─ @test-automation-engineer  (code → verified)
-      ├─ @scan                      (security audit)
-      └─ @big-pickle-simple-tasks   (complex → steps)
+      ├─ @planner                    (idea → plan + artifacts)
+      ├─ @requirements-clarifier     (vague → structured)
+      ├─ @architect-designer         (design → architecture)
+      ├─ @implementation-specialist  (plan → code)
+      ├─ @test-automation-engineer   (code → verified)
+      ├─ @scan                       (security audit)
+      └─ @big-pickle-simple-tasks    (complex → steps)
 ```
 
-Work flows through a defined pipeline: requirements → architecture → implementation → testing. Each stage has a dedicated agent with clear scope boundaries.
+Work flows through a defined pipeline: idea → plan → architecture → implementation → testing → review → ship. Each stage has a dedicated agent with clear scope boundaries. The pipeline guides but does not block — you always retain control.
 
 ---
 
@@ -106,21 +110,29 @@ CHANGELOG.md             # Release history
 CONTRIBUTING.md          # Contributor guide
 setup.sh                 # Bootstrap script (global / local / auto)
 LICENSE                  # MIT license
-agent/                   # Agent definitions (7 agents)
+agent/                   # Agent definitions (8 agents)
   tech-lead.md
+  planner.md
   requirements-clarifier.md
   architect-designer.md
   implementation-specialist.md
   test-automation-engineer.md
   scan.md
   big-pickle-simple-tasks.md
-command/                 # Slash commands (2 commands)
+command/                 # Slash commands (5 commands)
   build.md
   scan.md
-skills/                  # Skill packs
+  plan.md
+  investigate.md
+  review.md
+skills/                  # Skill packs (5 skills)
+  plan/SKILL.md          #   Planning workflow
+  investigate/SKILL.md   #   Debugging workflow
+  review/SKILL.md        #   Code review workflow
+  docs/SKILL.md          #   Documentation workflow
   ship/SKILL.md          #   One-command PR pipeline
 .github/                 # Community health files
-  ISSUE_TEMPLATE/        #   Bug report + feature request
+  ISSUE_TEMPLATE/
   pull_request_template.md
 ```
 
@@ -146,7 +158,7 @@ Add this to your project's `opencode.json`:
 }
 ```
 
-The pipeline rules load remotely — no files needed. The default `build` agent and agents defined in `agent/` still require cloning for full functionality.
+The pipeline rules load remotely — no files needed. Cloning is required for full agent and skill functionality.
 
 ### Global installation
 
@@ -176,55 +188,72 @@ git clone https://github.com/ayushks1ngh/opencode-for-starters.git .opencode
 
 ## Usage
 
+### Plan a feature
+
+```
+/plan
+```
+
+Creates an engineering plan with persistent artifacts:
+- **PRD.md** — Product requirements, user personas, scope, success metrics
+- **ARCHITECTURE.md** — System design, data flow, technology choices
+- **ROADMAP.md** — Milestones, phases, deliverables, timelines
+- **TASKS.md** — Granular tasks with dependencies and effort estimates
+
 ### Build a project
 
-```bash
-# In any project directory
+```
 /build
 ```
 
-The build agent auto-detects your project type:
-- `package.json` → `npm run build`
-- `Cargo.toml` → `cargo build`
-- `go.mod` → `go build`
-- `Makefile` → `make`
-- `requirements.txt` + `pyproject.toml` → `pip install -e .`
-- `mix.exs` → `mix compile`
-- `build.gradle` / `pom.xml` → `./gradlew build` / `mvn compile`
+Auto-detects your project type and runs the correct build command.
+
+### Debug an issue
+
+```
+/investigate
+```
+
+Follows a systematic debugging workflow: reproduce → gather evidence → analyze → hypothesize → fix → verify.
+
+### Review code changes
+
+```
+/review
+```
+
+Analyzes the diff for architecture, security, testing, performance, maintainability, and developer experience. Reports findings with severity levels.
 
 ### Scan for vulnerabilities
 
-```bash
+```
 /scan
 ```
 
-Detects your project type and runs the appropriate audit tool: `npm audit`, `cargo audit`, `pip-audit`, `go list`, `bundle audit`, or `composer audit`.
+Detects your project type and runs the appropriate audit tool.
 
 ### Ship a change
 
-```bash
-# After making changes, just say:
+```
 ship it
 ```
 
-The `ship` skill stages relevant files, fetches and rebases, commits with a conventional commit message, pushes the branch, opens a PR, and triggers an opencode review comment.
+Stages relevant files, commits, pushes, opens a PR, and triggers a review.
 
 ---
 
 ## Roadmap
 
-### Phase 2 — Planning & Analysis
-
-- **plan** — Structured planning with effort estimation and dependency tracking
-- **investigate** — Root-cause debugging workflow
-- **review** — Pre-merge code review with automated fix suggestions
-- **docs** — Documentation generation and staleness detection
-
-### Phase 3 — Quality & Design
+### Phase 4 — Quality & Design
 
 - **qa** — Web QA with test-fix-verify loop
 - **cso** — Security audit with OWASP and STRIDE threat modeling
 - **design** — Design consultation with system proposals
+
+### Phase 5 — Operations
+
+- **deploy** — Deployment automation
+- **monitor** — Post-deployment monitoring and alerting
 
 ---
 

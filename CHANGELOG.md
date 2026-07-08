@@ -10,6 +10,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - (placeholder for future entries)
 
+## [0.3.0] - 2026-07-08
+
+### Added
+
+- **Planner agent**: New `@planner` primary agent — requirements analysis, scope definition, milestone planning, risk identification. Generates persistent project artifacts (PRD.md, ARCHITECTURE.md, ROADMAP.md, TASKS.md)
+- **Plan skill**: Structured workflow for converting raw ideas into executable engineering plans with file-based outputs
+- **Investigate skill**: Systematic debugging workflow — reproduce, gather evidence, analyze, hypothesize, fix, verify. No fixes before root cause
+- **Review skill**: Pre-merge code review across 6 dimensions (architecture, security, testing, performance, maintainability, DX) with severity-ranked findings
+- **Docs skill**: Documentation generation for README, architecture, API, setup guides, and onboarding
+- **Slash commands**: `/plan`, `/investigate`, `/review` — thin wrappers that invoke the corresponding skill
+- **Pipeline enforcement**: Tech lead agent updated with soft pipeline gating — recommends Plan → Build → Review → Ship order but does not block
+
+### Changed
+
+- **AGENTS.md**: Restructured with primary vs specialist agent categories, new workflow rules, new commands table
+- **README.md**: New workflow philosophy (Idea → Plan → Architecture → Implementation → Testing → Review → Ship), updated agent/command/skill tables, new usage examples, updated repository structure map
+- **VERSION**: 0.2.0 → 0.3.0
+
+### Infrastructure
+
+- 4 new skill directories (plan, investigate, review, docs)
+- 3 new command definitions (plan, investigate, review)
+- 1 new agent definition (planner)
+
+[0.3.0]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.3.0
+
 ## [0.2.0] - 2026-07-08
 
 ### Added
