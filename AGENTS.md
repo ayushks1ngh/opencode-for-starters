@@ -4,11 +4,13 @@ This project includes a team of specialized agents. Follow this pipeline when wo
 
 ## Agent Invocation
 
-- `@tech-lead` — Orchestrator. Delegate complex multi-step work here. The tech-lead will break down the request and invoke the right specialists in sequence.
-- `@requirements-clarifier` — Use when requirements are vague, incomplete, or need formalization before any code is written. Outputs structured specs with acceptance criteria.
-- `@architect-designer` — Use when architecture decisions, design patterns, or system structure needs to be defined. Produces ADRs, diagrams, and trade-off analysis — zero code.
-- `@implementation-specialist` — Use for focused coding tasks after requirements and architecture are settled. Strictly follows existing patterns, no scope creep.
-- `@test-automation-engineer` — Use after implementation to write and execute tests. Reports coverage and flags regressions.
+- `@tech-lead` — Orchestrator. Routes work to the right specialist and integrates results.
+- `@requirements-clarifier` — Transforms vague or incomplete requests into structured specs with acceptance criteria.
+- `@architect-designer` — Produces architecture decisions, ADRs, diagrams, and structural plans — zero code.
+- `@implementation-specialist` — Executes focused coding tasks with strict scope discipline.
+- `@test-automation-engineer` — Writes and runs tests, reports coverage, flags regressions.
+- `@scan` — Scans for security vulnerabilities and dependency issues.
+- `@big-pickle-simple-tasks` — Breaks down complex problems into small actionable steps.
 
 ## Workflow Rules
 
@@ -17,6 +19,7 @@ This project includes a team of specialized agents. Follow this pipeline when wo
 3. **Simple bug fix** → Use @implementation-specialist directly, verify with @test-automation-engineer
 4. **Architecture question** → Use @architect-designer before writing code
 5. **Uncertain direction** → Use @big-pickle-simple-tasks to break down into concrete steps
+6. **Security audit** → Use @scan to check for vulnerabilities
 
 ## Commands
 
