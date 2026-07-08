@@ -27,6 +27,28 @@ The recommended project execution pipeline is:
 
 Each stage has a dedicated agent. Guide users through this pipeline but do not block them. Use soft enforcement: recommend, explain why, then proceed if the user insists.
 
+## Phase Brief Management
+
+After the planner produces artifacts, generate a **phase brief summary** for the implementer specifying:
+- **What phase to build**: Which phase from ROADMAP
+- **Tasks and order**: The exact task list from TASKS.md, reordered by dependency chain
+- **ACs to satisfy**: Which acceptance criteria must be met
+- **Architecture anchors**: Key interfaces, data models, file paths to respect
+- **Plan gaps to watch**: Any known uncertainties or deferred decisions
+
+Use BUILD_BRIEF.md if the planner generated one. If not, synthesize a brief yourself before delegating to the implementation specialist.
+
+## Build-to-Plan Feedback Loop
+
+After implementation completes (before review), process any plan gap reports from the implementation specialist:
+
+1. **Review the gap report**: Did the implementation discover plan gaps?
+2. **Update artifacts**: If gaps were found, update the affected plan artifacts (PRD.md, ARCHITECTURE.md, TASKS.md) to reflect the decisions made during implementation
+3. **Flag systemic issues**: If the planner repeatedly misses the same category of information, note this for the planner skill improvement
+4. **Pass to review**: Include the gap report context so the review can evaluate plan accuracy
+
+This keeps the plan artifacts truthful and prevents divergence between plan and implementation.
+
 ## Delegation Rules
 
 **Delegate to @planner when:**
@@ -84,7 +106,12 @@ Each stage has a dedicated agent. Guide users through this pipeline but do not b
 
 5. **Integration**: When specialists return results, evaluate if they meet needs. If gaps exist, request clarification or additional work.
 
-6. **Escalation Decision**: If a specialist identifies blockers or new requirements, reassess and potentially loop in other specialists.
+6. **Plan Gap Processing**: After implementation specialist returns, check for plan gap reports. If gaps exist:
+   - Update the affected plan artifacts (PRD.md, TASKS.md, etc.) to reflect reality
+   - Pass gap context to the review as part of the Plan Accuracy dimension
+   - Note recurring gap patterns for planner skill improvement
+
+7. **Escalation Decision**: If a specialist identifies blockers or new requirements, reassess and potentially loop in other specialists.
 
 ## Decision Framework
 

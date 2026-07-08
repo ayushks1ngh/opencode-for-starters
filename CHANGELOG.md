@@ -4,11 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [0.3.1] - 2026-07-08
 
 ### Added
 
-- (placeholder for future entries)
+- **BUILD_BRIEF.md generation**: Planner agent now produces a phase-specific implementation brief that distills PRD + ARCHITECTURE + ROADMAP + TASKS into a single actionable document
+- **AC→Task traceability**: TASKS.md tasks now annotate which acceptance criteria they satisfy (e.g. `(AC-1, AC-5)`), enabling coverage verification
+- **Explicit task dependencies**: TASKS.md now requires `depends_on` declarations for every task, enabling correct execution ordering
+- **Cross-reference validation**: Planner validates PRD↔ROADMAP consistency, AC→task coverage, and dependency completeness before delivery
+- **Plan Accuracy review dimension**: Review skill gains a 7th dimension checking implementation against PRD, ARCHITECTURE, and discovered plan gaps
+- **Build-to-Plan feedback loop**: Implementation specialist documents plan gaps discovered during coding; tech lead updates artifacts and passes findings to review
+
+### Changed
+
+- **agent/planner.md**: Added BUILD_BRIEF.md to persistent artifacts, AC tagging in PRD, phase mapping in ROADMAP, AC references and dependencies in TASKS, post-generation validation step
+- **skills/plan/SKILL.md**: Added BUILD_BRIEF.md to outputs, AC traceability and dependency requirements, cross-reference validation step, updated description
+- **skills/review/SKILL.md**: Added Plan Accuracy dimension with 6 checkpoints
+- **agent/implementation-specialist.md**: Added Plan Gap Reporting section with structured output format
+- **agent/tech-lead.md**: Added Phase Brief Management section, Build-to-Plan Feedback Loop section, Plan Gap Processing in operational protocol
+- **AGENTS.md**: Updated planner and implementation-specialist descriptions
+- **VERSION**: 0.3.0 → 0.3.1
 
 ## [0.3.0] - 2026-07-08
 
@@ -34,6 +49,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - 3 new command definitions (plan, investigate, review)
 - 1 new agent definition (planner)
 
+[0.3.1]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.3.1
 [0.3.0]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.3.0
 
 ## [0.2.0] - 2026-07-08

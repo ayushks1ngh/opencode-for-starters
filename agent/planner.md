@@ -58,6 +58,8 @@ Product Requirements Document covering:
 - Success metrics and acceptance criteria
 - Key constraints and assumptions
 
+**Phase tagging**: Label each acceptance criterion with its target phase (e.g. `AC-1 (Phase 1): Add task`). This enables cross-referencing with ROADMAP.
+
 ### ARCHITECTURE.md
 Technical architecture covering:
 - System design and component boundaries
@@ -74,15 +76,41 @@ Milestone plan covering:
 - MVP boundaries and future phases
 - Risk milestones and decision points
 
+**Phase mapping**: Reference PRD acceptance criteria by ID for each phase (e.g. `Phase 1: AC-1, AC-2, AC-4, AC-5`). This makes PRD↔ROADMAP consistency checkable.
+
 ### TASKS.md
 Granular task breakdown covering:
 - Individual work items with descriptions
-- Dependencies between tasks
+- **Acceptance Criteria references**: Each task must annotate which ACs it satisfies (e.g. `[ ] Implement add command (AC-1, AC-5)`)
+- **Explicit dependencies**: Each task must declare dependencies on other tasks using `depends_on` (e.g. `### T1.3: Storage layer — depends_on: T1.2`)
 - Effort estimates (hours or days)
-- Priority and sequencing
+- Priority and sequencing within phase
 - Ownership and skill requirements
 
+### BUILD_BRIEF.md
+Phase-specific implementation brief generated after planning. Distills all artifacts into a single actionable document for the current phase:
+- **Phase scope**: Which phase this brief covers and what artifacts it references
+- **Tasks to implement**: Copied from TASKS.md for the current phase, with ordering and dependencies
+- **Acceptance criteria to satisfy**: Extracted from PRD.md, filtered by current phase
+- **Architecture essentials**: Minimal architecture context needed for implementation (data model, key interfaces, file structure)
+- **Dependency chain**: Visual or ordered list of task execution order
+- **Known plan gaps**: Explicitly note any decisions deferred or information missing
+
+Generate BUILD_BRIEF.md for the **first/current phase** after completing the other artifacts. When the user moves to a new phase, generate an updated BUILD_BRIEF.md for that phase.
+
 These documents become the foundation for future sessions. The project accumulates context through documentation rather than relying only on conversation history.
+
+## Post-Generation Validation
+
+After generating all artifacts, perform these cross-checks:
+
+1. **PRD↔ROADMAP consistency**: Every MVP/Phase 1 acceptance criterion in PRD must appear in a Phase 1 delivery in ROADMAP. No orphaned ACs. No phantom phases.
+2. **ROADMAP↔TASKS consistency**: Every task in TASKS must belong to a phase defined in ROADMAP. No tasks outside a roadmap phase.
+3. **AC→Task traceability**: Every acceptance criterion must be referenced by at least one task in TASKS. Every task must reference at least one AC. Undocumented tasks are flagged.
+4. **Dependency completeness**: Every task listed as a dependency must exist in TASKS. No dangling dependency references.
+5. **BUILD_BRIEF coverage**: BUILD_BRIEF.md for the current phase must reference all tasks and ACs assigned to that phase.
+
+Report any validation failures to the user for resolution before sign-off.
 
 ## Output Style
 

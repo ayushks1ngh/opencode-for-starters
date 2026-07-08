@@ -62,6 +62,14 @@ Evaluate the diff against each dimension.
 - Are there migration or deployment steps?
 - Is documentation or README updated if needed?
 
+### Plan Accuracy
+- Does the implementation match the PRD acceptance criteria for this phase?
+- Are all ACs for the current phase implemented? If not, are unimplemented ACs documented and justified?
+- Were plan gaps discovered during implementation (missing specs, ambiguous requirements, incorrect assumptions)?
+- Does the implementation respect ARCHITECTURE.md decisions (data model, file structure, interfaces)?
+- Are there discrepancies between TASKS.md task descriptions and what was actually built?
+- If plan gaps were found, are they documented for planner feedback?
+
 ## Severity Levels
 
 | Level | Meaning | Action Required |
