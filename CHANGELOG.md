@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.5.0] - 2026-07-08
+
+### Added
+
+- **Adaptive Planning**: Planner classifies projects into 5 types (CLI Tool, Application/SaaS, Library/SDK, AI System, Infrastructure Platform) before generating artifacts — different project types receive different planning depth based on measurable triggers
+- **Artifact Depth Heuristics**: Each artifact (PRD, ARCHITECTURE, TASKS, BUILD_BRIEF) has 3-5 depth levels with explicit required-when conditions (e.g. interface contracts required when ≥3 modules or public API surface; behavioral edge cases required when stateful or concurrent components). Quick-reference depth map for each project type.
+- **Behavioral Edge Case Specifications**: Interface contracts extended with behavioral expectations — duplicate calls, invalid inputs, concurrency, idempotency, retry behavior, lifecycle state transitions, resource limits. Required for ARCHITECTURE L3+.
+- **Plan validation extended**: 3 new post-generation checks — behavioral edge cases present (L3+), depth justification recorded, classification recorded (14 total checks).
+
+### Changed
+
+- **agent/planner.md**: Added Project Classification section (mandatory first step), Artifact Depth Heuristics (4 tables with L1-L5 depth definitions), Behavioral Edge Cases (7 dimensions per component), Classification→Depth quick-reference mapping. Post-generation validation expanded from 11 to 14 checks.
+- **skills/plan/SKILL.md**: Step 1 now classifies project type and collects depth triggers before requirements analysis. Step 2 passes classification context to planner. Step 3 generates artifacts at determined depth with per-type reference table. Step 4 validates depth-appropriate content. Step 5 reports classification and depth rationale.
+- **AGENTS.md**: Updated planner description to mention adaptive depth, behavioral edge cases, and measurable heuristics.
+- **README.md**: Updated planner description, version badge, feature tables, roadmap section for v0.5.0.
+- **dogfooding/FRAMEWORK_LEARNINGS.md**: Updated Planned Improvements and Evidence Status tables with v0.5.0 features.
+- **VERSION**: 0.4.0 → 0.5.0
+
+### Infrastructure
+
+- No new agents, skills, or commands — zero scope creep (all changes extend existing planner-driven workflow)
+
 ## [0.4.0] - 2026-07-08
 
 ### Added

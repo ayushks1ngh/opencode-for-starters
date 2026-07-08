@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/powered%20by-opencode-7C3AED?style=for-the-badge" alt="Powered by opencode"/>
   </a>
   <a href="./VERSION">
-    <img src="https://img.shields.io/badge/version-0.4.0-22AA55?style=for-the-badge" alt="Version 0.4.0"/>
+    <img src="https://img.shields.io/badge/version-0.5.0-22AA55?style=for-the-badge" alt="Version 0.5.0"/>
   </a>
 </p>
 
@@ -46,7 +46,7 @@ Clone it into `.opencode/`, paste a link, or run the one-liner.
 | Agent | Mode | Role |
 |---|---|---|
 | `tech-lead` | primary | Orchestrator — routes work to specialists, enforces pipeline order |
-| `planner` | primary | Requirements analysis, scope, milestones, risks. Generates persistent project docs with security constraints, operational constraints, interface contracts, and module dependency graphs |
+| `planner` | primary | Requirements analysis, scope, milestones, risks. Adapts artifact depth to project type (CLI, SaaS, Library, AI System, Infra Platform) using measurable heuristics. Generates persistent project docs with security constraints, operational constraints, interface contracts, module dependency graphs, and behavioral edge case specifications |
 | `big-pickle-simple-tasks` | primary | Breaks complex work into small actionable steps |
 | `requirements-clarifier` | subagent | Vague ideas → structured specs with acceptance criteria |
 | `architect-designer` | subagent | Design docs, ADRs, diagrams — zero code |
@@ -251,6 +251,13 @@ Stages relevant files, commits, pushes, opens a PR, and triggers a review.
 
 ## Roadmap
 
+### v0.5.0 — Adaptive Planning ✅
+
+- **Adaptive Planning**: Planner classifies projects (CLI, SaaS, Library, AI System, Infra Platform) and adapts artifact depth using measurable triggers
+- **Artifact Depth Heuristics**: Each artifact has 3-5 depth levels with explicit required-when conditions
+- **Behavioral Edge Cases**: Interface contracts extended with duplicate calls, concurrency, idempotency, retry, lifecycle, and resource limit specifications
+- **No scope creep**: Zero new agents, skills, or commands
+
 ### v0.4.0 — Planning Maturity ✅
 
 - **Planning Maturity**: Security constraints, operational constraints, interface contracts, module dependency graphs now part of standard planning
@@ -258,7 +265,7 @@ Stages relevant files, commits, pushes, opens a PR, and triggers a review.
 - **Planning Completeness review**: 8th review dimension checks planning artifact quality
 - **Dogfooding archive**: Structured evidence repository for framework governance
 
-### Phase 5 — Quality & Design
+### Phase 6 — Quality & Design
 
 - **qa** — Web QA with test-fix-verify loop
 - **cso** — Security audit with OWASP and STRIDE threat modeling

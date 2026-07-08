@@ -6,7 +6,7 @@ Thanks for your interest in contributing! This document covers everything you ne
 
 opencode-for-starters is a starter kit that turns [opencode](https://opencode.ai) into a full development team. When cloned into a project as `.opencode/`, it provides:
 
-- **7 specialized agents** (tech-lead, requirements-clarifier, architect-designer, etc.)
+- **8 specialized agents** (tech-lead, planner, requirements-clarifier, architect-designer, implementation-specialist, test-automation-engineer, scan, big-pickle-simple-tasks)
 - **Slash commands** (`/build`, `/scan`)
 - **Skill packs** (e.g., `ship` for one-command PRs)
 - **Pipeline orchestration** via AGENTS.md instructions
@@ -16,27 +16,42 @@ All files use plain markdown with YAML frontmatter. No build tools, no compilers
 ## Repository Structure
 
 ```
-opencode.json          # Main config: model, instructions, agent overrides
-AGENTS.md              # Pipeline rules — loaded every session
-VERSION                # Current release version
-CHANGELOG.md           # Release history
-CONTRIBUTING.md        # This file
-README.md              # Project documentation
-setup.sh               # Bootstrap script
-LICENSE                # MIT license
-agent/                 # Agent definitions (YAML frontmatter + instructions)
-  tech-lead.md
+opencode.json            # Main config: model, instructions, agent overrides
+AGENTS.md                # Pipeline rules — loaded every session
+VERSION                  # Current release version
+CHANGELOG.md             # Release history
+CONTRIBUTING.md          # This file
+README.md                # Project documentation
+setup.sh                 # Bootstrap script
+LICENSE                  # MIT license
+agent/                   # Agent definitions (8 agents)
+  tech-lead.md           #   Orchestrator — routes work
+  planner.md             #   Generates plans + 5 artifacts
   requirements-clarifier.md
   architect-designer.md
   implementation-specialist.md
   test-automation-engineer.md
-  scan.md
+  scan.md                #   Security vulnerability scanner
   big-pickle-simple-tasks.md
-command/               # Slash command definitions
+command/                 # Slash commands (5 commands)
   build.md
   scan.md
-skills/                # Skill packs (SKILL.md files)
-  ship/SKILL.md
+  plan.md
+  investigate.md
+  review.md
+skills/                  # Skill packs (5 skills)
+  plan/SKILL.md          #   Planning workflow
+  investigate/SKILL.md   #   Debugging workflow
+  review/SKILL.md        #   Code review workflow
+  docs/SKILL.md          #   Documentation workflow
+  ship/SKILL.md          #   One-command PR pipeline
+dogfooding/              # Dogfooding archive
+  PROJECT_INDEX.md
+  FRAMEWORK_LEARNINGS.md
+  001-cli-task-tracker/
+  002-url-shortener/
+  003-research-agent-sdk/
+  004-ai-chatbot/
 ```
 
 ## How Agents Work
@@ -110,10 +125,11 @@ Skills are triggered by natural language (e.g., saying "ship it" triggers the `s
 1. Create a branch from `main` with a descriptive name (`feat/skill-name`, `fix/issue-description`, `docs/section-name`)
 2. Make your changes following the coding and documentation standards below
 3. Test that the config loads correctly (see testing section above)
-4. Update the VERSION file if your change adds or breaks functionality:
-   - **Patch** (0.2.x): Bug fixes, documentation, minor improvements
-   - **Minor** (0.x.0): New features, new agents, new skills
-5. Add a CHANGELOG entry under `[Unreleased]`
+4. Update the VERSION file following semantic versioning:
+   - **Patch** (x.x.N): Bug fixes, documentation updates, minor improvements
+   - **Minor** (x.N.0): New features, new agents, new skills
+   - **Major** (N.0.0): Stable release, breaking changes
+5. Add a CHANGELOG entry for the new version
 6. Open a PR against `main` with a clear description of what changed and why
 7. Ensure the PR template checklist is complete
 

@@ -15,7 +15,7 @@ Each stage has a dedicated agent. The pipeline guides but does not block — you
 ### Primary Agents
 
 - `@tech-lead` — Orchestrator. Routes work to the right specialist and integrates results.
-- `@planner` — Requirements analysis, scope definition, milestone planning, risk identification. Generates PRD.md, ARCHITECTURE.md, ROADMAP.md, TASKS.md, and BUILD_BRIEF.md as persistent project artifacts. Validates cross-references between artifacts before delivery.
+- `@planner` — Requirements analysis, scope definition, milestone planning, risk identification. Adapts artifact depth to project type (CLI, SaaS, Library, AI System, Infra Platform) using measurable heuristics. Generates PRD.md, ARCHITECTURE.md, ROADMAP.md, TASKS.md, and BUILD_BRIEF.md as persistent project artifacts. Includes behavioral edge case specifications for stateful components. Validates cross-references between artifacts before delivery.
 - `@big-pickle-simple-tasks` — Breaks down complex problems into small actionable steps.
 
 ### Specialist Agents
