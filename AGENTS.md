@@ -47,6 +47,14 @@ Framework improvements follow the **Evidence Rule**:
 
 See `dogfooding/` for the project archive and learnings repository.
 
+## Stability Commitment (v1.0.0)
+
+This is a stable release. The framework guarantees:
+- **No breaking changes** without a major version bump (v2.0.0)
+- **Minor versions** (v1.x.0) add features validated by the Evidence Rule (2+ dogfooding observations)
+- **Patch versions** (v1.0.x) fix bugs and documentation
+- **Dogfooding continues** as the evidence mechanism for future changes
+
 ## Commands
 
 | Command | What it does |

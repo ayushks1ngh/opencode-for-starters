@@ -103,7 +103,7 @@ None discovered. The existing skill set (plan, investigate, review, docs, ship) 
 
 ## 6. Missing Agents
 
-None discovered. The existing 9 agents (tech-lead, planner, requirements-clarifier, architect-designer, implementation-specialist, test-automation-engineer, scan, big-pickle-simple-tasks, build) covered the workflow.
+None discovered. The existing 8 agents (tech-lead, planner, requirements-clarifier, architect-designer, implementation-specialist, test-automation-engineer, scan, big-pickle-simple-tasks) covered the workflow.
 
 ---
 

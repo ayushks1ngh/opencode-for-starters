@@ -4,6 +4,48 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.0] - 2026-07-09
+
+### Evidence Validated Foundation
+
+v1.0.0 is the first stable release. Every feature is validated by two or more dogfooding projects. The framework has been proven across 4 project types (CLI, SaaS, SDK, AI System) through 4 complete dogfooding cycles.
+
+### What's Included
+
+- **8 specialized agents** — tech-lead (orchestrator), planner (adaptive planning), requirements-clarifier, architect-designer, implementation-specialist, test-automation-engineer, scan, big-pickle-simple-tasks
+- **5 slash commands** — `/plan`, `/build`, `/investigate`, `/review`, `/scan`
+- **7 skill packs** — plan, investigate, review, docs, ship, web-design-guidelines, writing-guidelines
+- **Full pipeline** — Idea → Plan → Architecture → Implementation → Testing → Review → Ship
+- **Adaptive Planning** — Project classification (CLI, SaaS, Library, AI System, Infra Platform) with artifact depth heuristics (L1-L5) based on measurable triggers
+- **Behavioral Edge Case Specifications** — 7 dimensions per component (duplicate calls, invalid inputs, concurrency, idempotency, retry, lifecycle, resource limits)
+- **Planning Maturity** — Security constraints, operational constraints, interface contracts, module dependency graphs, traceability matrix
+- **BUILD_BRIEF with Verification** — Per-AC verification commands with expected outcomes and definition of done
+- **Evidence Rule Governance** — Framework improvements validated by 2+ dogfooding observations before implementation
+- **Dogfooding Archive** — 4 completed projects with structured findings, confirmed/invalid assumptions, and evidence tracking
+
+### Dogfooding Validation
+
+| # | Project Type | Key Finding |
+|---|-------------|-------------|
+| 001 | CLI Task Tracker | BUILD_BRIEF and AC→task traceability needed |
+| 002 | URL Shortener SaaS | Security/operational constraints critical for stateful apps |
+| 003 | Research Agent SDK | Interface contracts and dependency graphs essential for libraries |
+| 004 | AI Chatbot | AI System classification correct; behavioral edge cases caught real bug |
+
+### Documentation
+
+- Comprehensive README with quick start, troubleshooting, and stability commitments
+- Full dogfooding archive with evidence for every framework decision
+- Updated CONTRIBUTING.md with structure and contribution guidelines
+- AUDIT_REPORT.md with pre-release verification
+
+### Stability Commitment
+
+- No breaking changes without v2.0.0
+- Minor versions add Evidence Rule-validated features
+- Patch versions fix bugs and documentation
+- Dogfooding continues as the evidence mechanism
+
 ## [0.5.0] - 2026-07-08
 
 ### Added

@@ -19,21 +19,25 @@
     <img src="https://img.shields.io/badge/powered%20by-opencode-7C3AED?style=for-the-badge" alt="Powered by opencode"/>
   </a>
   <a href="./VERSION">
-    <img src="https://img.shields.io/badge/version-0.5.0-22AA55?style=for-the-badge" alt="Version 0.5.0"/>
+    <img src="https://img.shields.io/badge/version-1.0.0-22AA55?style=for-the-badge" alt="Version 1.0.0"/>
   </a>
 </p>
 
 ---
 
-## What is This?
+## What This Framework Does
 
-[opencode](https://opencode.ai) is an open-source AI coding agent that runs in your terminal — like Claude Code, but free and extensible.
+**opencode-for-starters** is a structured engineering team that runs inside [opencode](https://opencode.ai) (a free, open-source AI coding agent for your terminal).
 
-This repository is a **project execution framework** that transforms opencode from a blank prompt into a structured engineering team. It guides you through the full software delivery lifecycle:
+Instead of starting with a blank prompt, you get 8 specialized agents, 5 slash commands, and 7 skill packs that guide you through:
 
 ```
 Idea → Plan → Architecture → Implementation → Testing → Review → Ship
 ```
+
+**Who it's for**: Developers building real software who want structured AI guidance — not raw prompting.
+
+**Why use it**: Without this framework, you manually prompt an AI for every step. With it, `/plan` generates a full PRD, architecture, roadmap, tasks, and build brief. `/investigate` debugs systematically. `/ship` commits, pushes, and opens a PR. The pipeline adds consistency, traceability, and evidence-driven governance to every project.
 
 Clone it into `.opencode/`, paste a link, or run the one-liner.
 
@@ -127,21 +131,22 @@ command/                 # Slash commands (5 commands)
   plan.md
   investigate.md
   review.md
-  skills/                  # Skill packs (7 skills)
-    plan/SKILL.md          #   Planning workflow
-    investigate/SKILL.md   #   Debugging workflow
-    review/SKILL.md        #   Code review workflow (8 dimensions)
-    docs/SKILL.md          #   Documentation workflow
-    ship/SKILL.md          #   One-command PR pipeline
-    web-design-guidelines/ #   UI/accessibility review (100+ rules)
-    writing-guidelines/    #   Documentation style review (80+ rules)
-  dogfooding/              # Dogfooding archive (evidence for framework changes)
-    PROJECT_INDEX.md       #   Dogfooding project tracker
-    FRAMEWORK_LEARNINGS.md #   Confirmed assumptions, bottlenecks, open questions
-    001-cli-task-tracker/  #   Dogfood #1 artifacts
-    002-url-shortener/     #   Dogfood #2 artifacts
-    templates/             #   Dogfooding templates
-  .github/                 # Community health files
+skills/                  # Skill packs (7 skills)
+  plan/SKILL.md          #   Planning workflow
+  investigate/SKILL.md   #   Debugging workflow
+  review/SKILL.md        #   Code review workflow (8 dimensions)
+  docs/SKILL.md          #   Documentation workflow
+  ship/SKILL.md          #   One-command PR pipeline
+  web-design-guidelines/ #   UI/accessibility review (100+ rules)
+  writing-guidelines/    #   Documentation style review (80+ rules)
+dogfooding/              # Dogfooding archive (evidence for framework changes)
+  PROJECT_INDEX.md       #   Dogfooding project tracker
+  FRAMEWORK_LEARNINGS.md #   Confirmed assumptions, bottlenecks, open questions
+  001-cli-task-tracker/  #   Dogfood #1 artifacts
+  002-url-shortener/     #   Dogfood #2 artifacts
+  003-research-agent-sdk/#   Dogfood #3 artifacts
+  004-ai-chatbot/        #   Dogfood #4 artifacts
+.github/                 # Community health files
   ISSUE_TEMPLATE/
   pull_request_template.md
 ```
@@ -192,6 +197,36 @@ Clone into any project as `.opencode/`:
 
 ```bash
 git clone https://github.com/ayushks1ngh/opencode-for-starters.git .opencode
+```
+
+---
+
+## Quick Start
+
+Try the framework in 60 seconds:
+
+```
+Idea: Build a URL Shortener with Flask + SQLite
+
+Step 1 — /plan
+  The planner generates:
+  - PRD.md          → Product requirements, personas, scope, acceptance criteria
+  - ARCHITECTURE.md → System design, data flow, tech choices, interface contracts
+  - ROADMAP.md      → Milestones, phases, deliverables
+  - TASKS.md        → Granular tasks with AC references and dependencies
+  - BUILD_BRIEF.md  → Phase-specific brief with verification commands for every AC
+
+Step 2 — /build
+  Auto-detects your project and runs the build command.
+
+Step 3 — /investigate (if something breaks)
+  Systematic debugging: reproduce → gather evidence → analyze → fix → verify.
+
+Step 4 — /review
+  Analyzes your diff across 8 dimensions (architecture, security, testing, etc.).
+
+Step 5 — "ship it"
+  Stages, commits, pushes, opens a PR, and triggers a review.
 ```
 
 ---
@@ -253,7 +288,31 @@ Stages relevant files, commits, pushes, opens a PR, and triggers a review.
 
 ---
 
-## Roadmap
+## Troubleshooting
+
+| Problem | Likely Cause | Fix |
+|---------|-------------|-----|
+| Agents not loading | Instructions path wrong | Run `opencode debug config` to verify AGENTS.md is loaded |
+| `/plan` generates shallow artifacts | Project type not classified | The planner asks you to confirm the project type — answer clearly (CLI, SaaS, Library, AI System, Infra Platform) |
+| Missing API keys | Provider not configured | Set your API key (e.g. `export OPENAI_API_KEY=...`) or configure in `opencode.json` |
+| `setup.sh` fails | Missing git or curl | Install git and curl, then re-run: `apt install git curl` (Linux) or `brew install git curl` (macOS) |
+| Git push fails | No remote or wrong origin | Run `git remote -v` to check, then `git remote add origin <url>` |
+| `gh` not found | GitHub CLI not installed or authenticated | Install via `brew install gh` or `apt install gh`, then run `gh auth login` |
+| Skill not triggering | Natural language trigger not matched | Use exact trigger phrases from the skill's SKILL.md (e.g. "ship it", "review this pr") |
+
+## Stability
+
+**v1.0.0** is the first stable release of opencode-for-starters. It guarantees:
+
+- **No breaking changes** without a major version bump (v2.0.0)
+- **Minor versions** (v1.x.0) add features validated by the Evidence Rule (2+ dogfooding observations)
+- **Patch versions** (v1.0.x) fix bugs and documentation
+- **Dogfooding continues** as the evidence mechanism for all future changes
+- **New project types** require dogfooding validation before their classification is considered stable
+
+The framework evolves through real-world evidence, not speculation. Every feature was validated across multiple projects before inclusion.
+
+---
 
 ### v0.5.0 — Adaptive Planning ✅
 

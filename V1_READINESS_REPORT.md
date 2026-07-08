@@ -78,9 +78,9 @@ All files are plain markdown with YAML frontmatter. No build tools, no compilers
 
 | Metric | Count |
 |--------|-------|
-| Agents | 8 (2 primary, 6 subagent) |
+| Agents | 8 (3 primary, 5 subagent) |
 | Commands | 5 |
-| Skills | 5 |
+| Skills | 7 |
 | Dogfooding projects | 4 |
 | Confirmed assumptions | 12 |
 | Invalid assumptions (corrected) | 7 |
@@ -183,13 +183,13 @@ Give the framework to a developer who has never used opencode-for-starters. Ask 
 - Number of incorrect assumptions about how the pipeline works
 - Whether the user reads the dogfooding examples
 - Whether the user finds the Evidence Rule useful or confusing
-- Whether the user discovers and uses all 5 commands and 5 skills
+- Whether the user discovers and uses all 5 commands and 7 skills
 
 ### Success Criteria
 - Project reaches ship-ready state within a single session
 - User does not need to ask "how do I..." more than 3 times
 - User at least reads one dogfooding example
-- User discovers at least 3 of 5 commands and 3 of 5 skills
+- User discovers at least 3 of 5 commands and 3 of 7 skills
 
 ### Why This Dogfood
 All 4 previous dogfooding projects were executed by the framework author, who understood the design intent. Dogfood #5 is the first test of whether the framework is self-documenting and self-guiding — which determines whether it's ready for public adoption.
