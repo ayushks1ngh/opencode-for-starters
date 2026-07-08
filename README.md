@@ -5,7 +5,7 @@
 <h1 align="center">opencode-for-starters</h1>
 
 <p align="center">
-  <b>Drop it into any project and get a full AI development pipeline with specialized agents that work together.</b>
+  <b>One command to get a full AI development pipeline.</b>
 </p>
 
 <p align="center">
@@ -22,15 +22,25 @@
 
 ---
 
-## Features
+## One-liner
 
-- **6 specialized agents** that auto-chain: clarify requirements → design architecture → implement → test
-- **Orchestrator agent** (`tech-lead`) delegates work to the right specialist based on task complexity
-- **AGENTS.md rules** loaded every session — the pipeline runs automatically
-- **`/build`** command — auto-detects project type and runs the right build tool
-- **`/scan`** command — runs vulnerability audits (npm audit, cargo audit, pip audit, etc.)
-- **`ship it`** skill — commit, push, PR, and auto-review in one phrase
-- **Zero deps** — clone and go
+```bash
+curl -fsSL https://raw.githubusercontent.com/ayushks1ngh/opencode-for-starters/main/setup.sh | bash
+```
+
+Installs opencode (if missing), clones the full pipeline, and prints next steps.
+
+## Paste-link (no clone needed)
+
+Add this to your project's `opencode.json`:
+
+```json
+{
+  "instructions": ["https://raw.githubusercontent.com/ayushks1ngh/opencode-for-starters/main/AGENTS.md"]
+}
+```
+
+The pipeline rules load remotely — the agents know what to do.
 
 ## How It Works
 
@@ -47,37 +57,16 @@ graph LR
     IS --> TA
 ```
 
-The `AGENTS.md` file is loaded as instructions in every session. When you type a request:
-
-1. **Vague or complex** → `@tech-lead` breaks it down and chains specialists
-2. **Clear bug fix** → `@implementation-specialist` handles it directly
-3. **Architecture question** → `@architect-designer` produces design docs
-4. **Unsure where to start** → `@big-pickle-simple-tasks` decomposes into steps
+The `AGENTS.md` file is loaded as instructions in every session. The model follows the pipeline automatically:
 
 | Agent | Mode | Role |
 |---|---|---|
 | `tech-lead` | primary | Orchestrator — routes work to specialists |
-| `requirements-clarifier` | subagent | Vague ideas → structured specs with AC |
+| `requirements-clarifier` | subagent | Vague ideas → structured specs |
 | `architect-designer` | subagent | Design docs, ADRs, diagrams — zero code |
 | `implementation-specialist` | subagent | Writes code, strict no-architectural-drift |
 | `test-automation-engineer` | subagent | Writes & runs tests, reports coverage |
 | `big-pickle-simple-tasks` | primary | Big work → small actionable steps |
-
-## Quick Start
-
-```bash
-cd your-project
-git clone https://github.com/ayushks1ngh/opencode-for-starters.git .opencode
-opencode .
-```
-
-Or install globally:
-
-```bash
-git clone https://github.com/ayushks1ngh/opencode-for-starters.git ~/.config/opencode
-```
-
-Then just start typing. The pipeline picks up automatically.
 
 ## What's Inside
 
@@ -86,16 +75,7 @@ AGENTS.md                  # pipeline rules (loaded every session)
 .opencode/
 ├── opencode.json          # model config + instructions
 ├── agent/                 # 7 custom agents
-│   ├── tech-lead.md
-│   ├── requirements-clarifier.md
-│   ├── architect-designer.md
-│   ├── implementation-specialist.md
-│   ├── test-automation-engineer.md
-│   ├── big-pickle-simple-tasks.md
-│   └── scan.md
-├── command/
-│   ├── build.md
-│   └── scan.md
+├── command/               # /build and /scan
 └── skills/ship/SKILL.md   # one-command PR pipeline
 ```
 
