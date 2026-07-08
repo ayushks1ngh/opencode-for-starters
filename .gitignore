@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# secrets
+.env
+credentials.*
+*.pem
+
+# databases
+*.db
+*.db-shm
+*.db-wal
