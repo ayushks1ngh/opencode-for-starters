@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/powered%20by-opencode-7C3AED?style=for-the-badge" alt="Powered by opencode"/>
   </a>
   <a href="./VERSION">
-    <img src="https://img.shields.io/badge/version-1.0.0-22AA55?style=for-the-badge" alt="Version 1.0.0"/>
+    <img src="https://img.shields.io/badge/version-1.0.1-22AA55?style=for-the-badge" alt="Version 1.0.1"/>
   </a>
 </p>
 
@@ -40,6 +40,18 @@ Idea → Plan → Architecture → Implementation → Testing → Review → Shi
 **Why use it**: Without this framework, you manually prompt an AI for every step. With it, `/plan` generates a full PRD, architecture, roadmap, tasks, and build brief. `/investigate` debugs systematically. `/ship` commits, pushes, and opens a PR. The pipeline adds consistency, traceability, and evidence-driven governance to every project.
 
 Clone it into `.opencode/`, paste a link, or run the one-liner.
+
+---
+
+## Concepts
+
+Three building blocks make up the framework:
+
+- **Agents** — always-available specialists with a defined role and scope (e.g. `@planner`, `@scan`). Primary agents can be switched to directly; subagents are invoked via `@mention` or delegated to by other agents.
+- **Commands** — `/slash` shortcuts (e.g. `/plan`, `/build`) that route a request to the right agent or skill without you needing to remember which one to invoke.
+- **Skills** — multi-step workflows triggered by natural language (e.g. saying "ship it") that guide an agent through a structured process such as planning, review, or debugging.
+
+In short: commands are shortcuts, agents are who does the work, and skills are the workflow they follow.
 
 ---
 
@@ -146,9 +158,11 @@ dogfooding/              # Dogfooding archive (evidence for framework changes)
   002-url-shortener/     #   Dogfood #2 artifacts
   003-research-agent-sdk/#   Dogfood #3 artifacts
   004-ai-chatbot/        #   Dogfood #4 artifacts
+docs/internal/           # Archived audit/readiness reports (historical, not user-facing)
 .github/                 # Community health files
   ISSUE_TEMPLATE/
   pull_request_template.md
+  workflows/validate.yml # CI: frontmatter validation, count checks, shellcheck
 ```
 
 ---
@@ -295,6 +309,7 @@ Stages relevant files, commits, pushes, opens a PR, and triggers a review.
 | Agents not loading | Instructions path wrong | Run `opencode debug config` to verify AGENTS.md is loaded |
 | `/plan` generates shallow artifacts | Project type not classified | The planner asks you to confirm the project type — answer clearly (CLI, SaaS, Library, AI System, Infra Platform) |
 | Missing API keys | Provider not configured | Set your API key (e.g. `export OPENAI_API_KEY=...`) or configure in `opencode.json` |
+| Wrong model / model unavailable | `opencode.json` pins `model: "opencode/kimi-k2.5"` by default | Change the `model` field in `opencode.json` to any model available to your account, or remove the field to use opencode's default |
 | `setup.sh` fails | Missing git or curl | Install git and curl, then re-run: `apt install git curl` (Linux) or `brew install git curl` (macOS) |
 | Git push fails | No remote or wrong origin | Run `git remote -v` to check, then `git remote add origin <url>` |
 | `gh` not found | GitHub CLI not installed or authenticated | Install via `brew install gh` or `apt install gh`, then run `gh auth login` |
@@ -328,13 +343,19 @@ The framework evolves through real-world evidence, not speculation. Every featur
 - **Planning Completeness review**: 8th review dimension checks planning artifact quality
 - **Dogfooding archive**: Structured evidence repository for framework governance
 
-### Phase 6 — Quality & Design
+---
+
+## Future Roadmap (Not Yet Built)
+
+The items below are proposed ideas, not shipped features. They require dogfooding evidence before implementation, per the Evidence Rule.
+
+### Proposed — Quality & Design
 
 - **qa** — Web QA with test-fix-verify loop
 - **cso** — Security audit with OWASP and STRIDE threat modeling
 - **design** — Design consultation with system proposals
 
-### Phase 6 — Operations
+### Proposed — Operations
 
 - **deploy** — Deployment automation
 - **monitor** — Post-deployment monitoring and alerting

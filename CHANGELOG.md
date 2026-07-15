@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+## [1.0.1] - 2026-07-15
+
+### Fixed
+
+- **scan agent permissions**: Removed contradictory `bash: "*": "allow"` wildcard that defeated the intended audit-command whitelist; wildcard now requires confirmation, added `govulncheck` to the allow list
+- **setup.sh**: Added prerequisite checks for `git` and `curl` before attempting install (previously failed with a cryptic error)
+- **CHANGELOG.md**: Added missing `[1.0.0]` and `[0.5.0]` release links; added `[Unreleased]` section per PR template convention
+- **command/plan.md, review.md, investigate.md**: Added explicit `agent: build` field for consistency with `build.md`/`scan.md` and to remove reliance on undocumented default routing
+- **skills/ship/SKILL.md**: Added `gh auth status` check in sanity-check step; aborts with a clear message instead of failing mid-workflow at PR creation
+- **skills/web-design-guidelines, writing-guidelines**: Added fallback instructions when the external Vercel guideline fetch fails, instead of failing silently
+
+### Changed
+
+- **README.md**: Added "Concepts" section explaining agents vs. commands vs. skills; relabeled unbuilt "Phase 6" items as "Future Roadmap (Not Yet Built)" to avoid implying they ship in v1.0.0; documented the pinned `model` field in Troubleshooting; updated repository structure diagram for `docs/internal/` and CI workflow
+- **CONTRIBUTING.md**: Documented `.agents/` as a gitignored runtime artifact, not a source file; updated repository structure diagram
+
+### Infrastructure
+
+- **`.github/workflows/validate.yml`**: New CI workflow — validates YAML frontmatter across all agent/command/skill files, checks agent/command/skill counts against README claims, runs ShellCheck on `setup.sh`
+- **Moved internal audit docs**: `AUDIT_REPORT.md`, `V1_READINESS_REPORT.md`, `FINAL_RELEASE_AUDIT.md`, and the working review doc moved from repo root to `docs/internal/` to declutter the root while preserving history
+
 ## [1.0.0] - 2026-07-09
 
 ### Evidence Validated Foundation
@@ -117,6 +140,9 @@ v1.0.0 is the first stable release. Every feature is validated by two or more do
 - 3 new command definitions (plan, investigate, review)
 - 1 new agent definition (planner)
 
+[1.0.1]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v1.0.1
+[1.0.0]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v1.0.0
+[0.5.0]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.5.0
 [0.4.0]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.4.0
 [0.3.1]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.3.1
 [0.3.0]: https://github.com/ayushks1ngh/opencode-for-starters/releases/tag/v0.3.0

@@ -17,6 +17,20 @@ usage() {
   exit 0
 }
 
+check_prerequisites() {
+  local missing=()
+  for cmd in git curl; do
+    command -v "$cmd" &>/dev/null || missing+=("$cmd")
+  done
+  if [ "${#missing[@]}" -gt 0 ]; then
+    echo "Error: missing required command(s): ${missing[*]}"
+    echo "Install them, then re-run this script."
+    echo "  Linux:  apt install ${missing[*]}"
+    echo "  macOS:  brew install ${missing[*]}"
+    exit 1
+  fi
+}
+
 install_opencode() {
   if command -v opencode &>/dev/null; then
     echo -e "${GREEN}opencode already installed${NC}"
@@ -47,6 +61,7 @@ setup_global() {
   echo -e "${GREEN}Global config ready at $config_dir${NC}"
 }
 
+# shellcheck disable=SC2120  # target defaults to .opencode; callers may optionally override
 setup_local() {
   local target="${1:-.opencode}"
   if [ -d "$target/.git" ]; then
@@ -81,16 +96,19 @@ MODE="${1:-auto}"
 
 case "$MODE" in
   --global|global)
+    check_prerequisites
     install_opencode
     setup_global
     show_next_steps
     ;;
   --local|local)
+    check_prerequisites
     install_opencode
     setup_local
     show_next_steps
     ;;
   auto)
+    check_prerequisites
     install_opencode
     if [ -f ".opencode/opencode.json" ] || [ -f "opencode.json" ]; then
       setup_local

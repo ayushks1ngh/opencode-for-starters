@@ -28,6 +28,8 @@ https://raw.githubusercontent.com/vercel-labs/writing-guidelines/main/command.md
 
 Use WebFetch to retrieve the latest rules. The fetched content contains all the rules and output format instructions.
 
+**If the fetch fails** (network error, URL moved, repo unavailable): tell the user the live guidelines could not be retrieved and ask whether to proceed with a general prose/style review based on common technical writing conventions instead of aborting silently.
+
 ## Usage
 
 When a user provides a file or pattern argument:

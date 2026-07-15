@@ -54,6 +54,7 @@ dogfooding/              # Dogfooding archive
   002-url-shortener/
   003-research-agent-sdk/
   004-ai-chatbot/
+docs/internal/           # Archived audit/readiness reports (historical reference, not user docs)
 ```
 
 ## How Agents Work
@@ -93,6 +94,8 @@ Commands are invoked via `/command-name` in an opencode session.
 Skills are `SKILL.md` files in `skills/` that provide structured, multi-step workflows. They use the [opencode SKILL.md format](https://opencode.ai/docs/concepts/skills) with YAML frontmatter (name, description, triggers) and step-by-step instructions.
 
 Skills are triggered by natural language (e.g., saying "ship it" triggers the `ship` skill).
+
+> **Note on `.agents/`**: You may see a local `.agents/` directory appear during development or opencode sessions. It is gitignored and is a runtime/local artifact, not a source file. The canonical skill and agent definitions live in `skills/` and `agent/` respectively — never edit `.agents/` directly.
 
 ## How to Test Changes
 

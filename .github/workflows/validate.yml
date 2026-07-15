@@ -1,0 +1,105 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-frontmatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Validate agent/command/skill frontmatter
+        run: |
+          python3 - <<'EOF'
+          import sys
+          import yaml
+          from pathlib import Path
+
+          def extract_frontmatter(path: Path):
+              text = path.read_text(encoding="utf-8")
+              if not text.startswith("---"):
+                  return None
+              parts = text.split("---", 2)
+              if len(parts) < 3:
+                  return None
+              return parts[1]
+
+          failures = []
+          patterns = ["agent/*.md", "command/*.md", "skills/*/SKILL.md"]
+          checked = 0
+          for pattern in patterns:
+              for path in Path(".").glob(pattern):
+                  checked += 1
+                  fm = extract_frontmatter(path)
+                  if fm is None:
+                      failures.append(f"{path}: missing or malformed YAML frontmatter")
+                      continue
+                  try:
+                      yaml.safe_load(fm)
+                  except yaml.YAMLError as e:
+                      failures.append(f"{path}: invalid YAML — {e}")
+
+          print(f"Checked {checked} files.")
+          if failures:
+              print("FAILURES:")
+              for f in failures:
+                  print(f"  - {f}")
+              sys.exit(1)
+          print("All frontmatter valid.")
+          EOF
+
+      - name: Check agent/command/skill counts against README
+        run: |
+          python3 - <<'EOF'
+          import re
+          import sys
+          from pathlib import Path
+
+          agent_count = len(list(Path("agent").glob("*.md")))
+          command_count = len(list(Path("command").glob("*.md")))
+          skill_count = len(list(Path("skills").glob("*/SKILL.md")))
+
+          readme = Path("README.md").read_text(encoding="utf-8")
+
+          def check(label, actual, patterns):
+              for pattern in patterns:
+                  m = re.search(pattern, readme)
+                  if m:
+                      claimed = int(m.group(1))
+                      if claimed != actual:
+                          print(f"MISMATCH: README claims {claimed} {label}, found {actual}")
+                          return False
+                      return True
+              print(f"WARNING: could not find a '{label}' count claim in README to verify")
+              return True
+
+          ok = True
+          ok &= check("agents", agent_count, [r"(\d+)\s+specialized agents", r"(\d+)\s+agents"])
+          ok &= check("commands", command_count, [r"(\d+)\s+slash commands", r"(\d+)\s+commands"])
+          ok &= check("skills", skill_count, [r"(\d+)\s+skill packs", r"(\d+)\s+skills"])
+
+          if not ok:
+              sys.exit(1)
+          EOF
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ShellCheck on setup.sh
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          scandir: "."
+          ignore_paths: "dogfooding"

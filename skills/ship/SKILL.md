@@ -29,9 +29,10 @@ git status
 git diff
 git log --oneline -5
 git remote -v
+gh auth status
 ```
 
-Use the output to understand: what branch we're on, what's changed, what the recent commit style looks like, and what the remote is.
+Use the output to understand: what branch we're on, what's changed, what the recent commit style looks like, and what the remote is. If `gh auth status` fails, stop and tell the user to run `gh auth login` before continuing — do not proceed to PR creation without it.
 
 ### Step 2 — Fetch and rebase
 

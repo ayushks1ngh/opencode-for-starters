@@ -7,11 +7,12 @@ description: >-
 mode: subagent
 permission:
   bash:
-    "*": "allow"
+    "*": "ask"
     "npm audit": "allow"
     "pip audit": "allow"
     "cargo audit": "allow"
     "go list": "allow"
+    "govulncheck": "allow"
     "snyk *": "ask"
   edit: deny
 ---
